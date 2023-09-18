@@ -429,4 +429,77 @@ root.mainloop()
     
 
 
-    
+# winners screen 
+
+
+def winner_finder():
+    i = 0
+        
+    winner = 'N.A'
+    second = 'N.A'
+    third = 'N.A'
+    winner_bal = 0
+    second_bal = 0
+    third_bal = 0
+    while i < len(players):
+            
+
+        if int(balance[i]) >= int(winner_bal):
+            third = second
+            second = winner
+            winner = players[i]
+            third_bal = second_bal
+            second_bal = winner_bal
+            winner_bal = balance[i]
+        
+        elif int(balance[i]) >= int(second_bal):
+            third = second
+            second = players[i]
+            third_bal = second_bal
+            second_bal = balance[i]
+        elif int(balance[i]) >= int(third_bal):
+            third = players[i]
+            third_bal = balance[i]
+
+        i +=1
+ 
+    return winner,second,third                
+
+                
+first,second,third = winner_finder() 
+
+winner = ctk.CTk()
+
+
+frame = ctk.CTkFrame(winner,width = 400)
+frame.pack(padx=30,pady=30)
+win_lable = ctk.CTkLabel(frame,text="Winners",font=('Cursive',70))
+win_lable.pack(padx=30,pady=30)
+first_lable = ctk.CTkLabel(frame,text=str("1.")+first,font=('Cursive',50))
+first_lable.pack(padx=30,pady=30)
+second_lable = ctk.CTkLabel(frame,text=str("2.")+second,font=('Roboto',50))
+second_lable.pack(padx=30,pady=30)
+third_lable = ctk.CTkLabel(frame,text=str("3.")+third,font=('Cursive',50))
+third_lable.pack(padx=30,pady=30)
+
+
+
+
+
+
+winner.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
